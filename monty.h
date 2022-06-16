@@ -1,11 +1,14 @@
-#ifndef MONTY
-#define MONTY
+#ifndef __HOOLB__
+#define __HOOLB__
 
 #include <stdio.h>
 #include <stdlib.h>
-
-#define TRUE 1
-#define FALSE 0
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/syscall.h>
+#include <string.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -24,7 +27,7 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcoode and its function
+ * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
@@ -37,4 +40,15 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-#endif /* MONTY */
+void pint(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *head);
+int pushint(char *list);
+int _strcmp(char *opcode, char *list);
+void add(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number, int n);
+void pall(stack_t **stack, unsigned int line_number);
+
+
+#endif
